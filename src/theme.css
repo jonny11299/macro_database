@@ -2,44 +2,50 @@
 
 :root {
   /* Backgrounds */
-  --bg-base:         #0d1117;   /* page body */
-  --bg-panel:        #161b22;   /* cards, dropzone, panels */
-  --bg-panel-raised: #1c2128;   /* slightly lifted surfaces */
-  --bg-header:       #13181f;   /* sticky table header */
+  --bg-base: #0d1117;
+  /* page body */
+  --bg-panel: #161b22;
+  /* cards, dropzone, panels */
+  --bg-panel-raised: #1c2128;
+  /* slightly lifted surfaces */
+  --bg-header: #13181f;
+  /* sticky table header */
 
   /* Brand / accent */
-  --green:           #3ecf8e;   /* Supabase green — primary accent */
-  --green-dim:       rgba(62, 207, 142, 0.12);
-  --green-border:    rgba(62, 207, 142, 0.35);
-  --green-glow:      rgba(62, 207, 142, 0.08);
+  --green: #3ecf8e;
+  /* Supabase green — primary accent */
+  --green-dim: rgba(62, 207, 142, 0.12);
+  --green-border: rgba(62, 207, 142, 0.35);
+  --green-glow: rgba(62, 207, 142, 0.08);
 
   /* Text */
-  --text-primary:    #ededed;
-  --text-secondary:  #8b949e;
-  --text-muted:      #484f58;
-  --text-disabled:   #30363d;
+  --text-primary: #ededed;
+  --text-secondary: #8b949e;
+  --text-muted: #484f58;
+  --text-disabled: #30363d;
 
   /* Borders */
-  --border:          rgba(255, 255, 255, 0.08);
-  --border-bright:   rgba(255, 255, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.16);
 
   /* URL link color */
-  --url-color:       #58a6ff;   /* blue — distinct from green accent */
-  --url-hover:       #79b8ff;
+  --url-color: #58a6ff;
+  /* blue — distinct from green accent */
+  --url-hover: #79b8ff;
 
   /* Danger */
-  --red:             #f85149;
+  --red: #f85149;
 
   /* Typography */
-  --font-mono:       'Source Code Pro', 'Cascadia Code', 'Fira Code', monospace;
-  --font-size-base:  13px;
-  --font-size-sm:    11px;
-  --font-size-xs:    10px;
+  --font-mono: 'Source Code Pro', 'Cascadia Code', 'Fira Code', monospace;
+  --font-size-base: 14px;
+  --font-size-sm: 12px;
+  --font-size-xs: 10px;
 
   /* Spacing */
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
   /* Shadows */
   --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.6);
@@ -47,9 +53,14 @@
 }
 
 /* ── Global resets ── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: var(--bg-base);
@@ -61,10 +72,23 @@ html, body {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar            { width: 6px; height: 6px; }
-::-webkit-scrollbar-track      { background: transparent; }
-::-webkit-scrollbar-thumb      { background: var(--text-muted); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover{ background: var(--text-secondary); }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
 
 /* ── Focus ring ── */
 :focus-visible {
