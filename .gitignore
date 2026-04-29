@@ -1,2 +1,5 @@
 #Environment variables
 env/
+
+#Package
+node_modules/
