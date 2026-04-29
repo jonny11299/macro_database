@@ -8,4 +8,7 @@ This project will use Svelte v4.x, and we will install better-sqlite-3 or an equ
 
 Please confirm the build spec and give the user a chance to modify spec before writing code. Please always let me know if there are any questions or ambiguity.
 
+Please read the spec at "dev_docs.md", which will give you an overview of the program architecture.
+
 Thanks!
+
