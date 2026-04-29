@@ -56,9 +56,11 @@ function trim2D(data) {
   const lr = lastNonEmptyRow(data)
   if (lr === -1) return []
 
-  // Extend up to 2 rows beyond the last data row (cap at actual array length)
-  const endRow = Math.min(lr + ROW_PAD, data.length - 1)
+  // Extend 2 rows beyond the last data row; synthesize empty rows if the
+  // sheet didn't have them (SheetJS stops at !ref, so slice won't go further).
+  const endRow = lr + ROW_PAD
   const slicedRows = data.slice(0, endRow + 1)
+  while (slicedRows.length < endRow + 1) slicedRows.push([])
 
   const lc = lastNonEmptyCol(slicedRows)
   if (lc === -1) return []
