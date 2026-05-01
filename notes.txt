@@ -21,3 +21,21 @@ Working well. To pick back up, let's:
 2. DB isn't tested at all. So clearly, we will need to setup test cases and diagnose any:
     - functional issues
     - security vulnerabilities
+
+
+
+
+
+According to Claude, "What do you think we should work on?":
+
+Immediate / most impactful
+Delete src/lib/parseSheet.js — it's still sitting there orphaned, we just never cleaned it up
+
+Test the full flow end-to-end with a real VTS file and make sure links are actually being stored and displayed correctly
+Functional gaps
+Domains and Macros management UI — right now those tables exist in the DB but there's no way to add/edit them from the app. Without domains seeded, every link shows null for domain. Without macros seeded, no macro matching happens. These tabs are probably the next big feature.
+Macro regex logic — we're currently using url.includes(macro.macro_pre) which is a simple string match. Depending on what VTS macro tokens actually look like, we may need a proper regex pattern here.
+Polish / reliability
+last_modified auto-update on edits — the UPDATE queries in domains.js and macros.js set last_modified = now() manually, but it'd be cleaner as a Postgres trigger so it's enforced at the DB level
+Session handling edge case — if the session stored in sessionStorage is stale (e.g. DB was wiped), the app will silently fail on link extraction. We should detect and recover from that.
+I'd probably go 2 → 3 in that order. What sounds right to you?

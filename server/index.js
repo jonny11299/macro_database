@@ -8,7 +8,7 @@ import macrosRouter from './routes/macros.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '100kb' }));
 
 // Routes
 app.use('/api/sessions', sessionsRouter);
