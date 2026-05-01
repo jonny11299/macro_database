@@ -1,9 +1,13 @@
 <script>
   import NavBar    from './lib/NavBar.svelte'
   import UploadTab from './lib/UploadTab.svelte'
+  import LinksTab  from './lib/LinksTab.svelte'
 
-  const NAV_TABS = [{ id: 'upload', label: 'Upload' }]
-  let activeNav  = 'upload'
+  const NAV_TABS = [
+    { id: 'upload', label: 'Upload' },
+    { id: 'links',  label: 'Links'  },
+  ]
+  let activeNav = 'upload'
 </script>
 
 <div class="layout">
@@ -12,6 +16,8 @@
   <main class="main">
     {#if activeNav === 'upload'}
       <UploadTab />
+    {:else if activeNav === 'links'}
+      <LinksTab />
     {/if}
   </main>
 </div>

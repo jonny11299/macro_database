@@ -1,0 +1,23 @@
+
+
+
+4/30/26:
+
+Working well. To pick back up, let's:
+
+0. Let's just make a quick route to check if the server is "on" or not. Running the client-side without the server running 
+    shouldn't return with "Could not load links: Server returned non-JSON response (HTTP 500)" or whatever specific route 
+    we're running. We should just have an indicator light at the top that has:
+        - red: could not connect to port [port] ("could not connect to port [port]")
+        - yellow: connected to server with issues ("issue named here");
+        - green: server connected, connected to port [port]
+
+1. Play with the outputs. Already, I can see we're getting leading + trailing text in cells with "description: https//link.com" 
+    - Probably the right logic here is to:
+        a. read until 'h' or '<' char detected
+        b. go from there until end
+        c. if no 'h' nor '<' char detected, just put the whole cell in and "console.error" the contents of the cell 
+
+2. DB isn't tested at all. So clearly, we will need to setup test cases and diagnose any:
+    - functional issues
+    - security vulnerabilities

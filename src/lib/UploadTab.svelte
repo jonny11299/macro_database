@@ -1,18 +1,17 @@
 <script>
   import DropZone  from './DropZone.svelte'
   import DataTable from './DataTable.svelte'
-  import { parseWorkbook } from './parseSheet.js'
+  import { parseWorkbook } from '../scripts/parseSheet.js'
+  import { fileList } from '../scripts/stores.js'
 
-  // { id, name, status: 'parsing'|'ready'|'error', sheets, error, activeSheet, open }
-  let fileList = []
-  let nextId   = 0
+  let nextId = 0
 
   async function addFiles(files) {
     const lastIndex = files.length - 1
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const id   = nextId++
-      fileList = [...fileList, {
+      $fileList = [...$fileList, {
         id,
         name:        file.name,
         status:      'parsing',
@@ -24,11 +23,11 @@
 
       try {
         const sheets = await parseWorkbook(file)
-        fileList = fileList.map(f =>
+        $fileList = $fileList.map(f =>
           f.id === id ? { ...f, status: 'ready', sheets, open: i === lastIndex } : f
         )
       } catch (err) {
-        fileList = fileList.map(f =>
+        $fileList = $fileList.map(f =>
           f.id === id ? { ...f, status: 'error', error: err.message } : f
         )
       }
@@ -36,31 +35,31 @@
   }
 
   function toggleOpen(id) {
-    fileList = fileList.map(f =>
+    $fileList = $fileList.map(f =>
       f.id === id ? { ...f, open: f.status === 'ready' ? !f.open : f.open } : f
     )
   }
 
   function setSheet(id, idx) {
-    fileList = fileList.map(f =>
+    $fileList = $fileList.map(f =>
       f.id === id ? { ...f, activeSheet: idx } : f
     )
   }
 
   function removeFile(id, e) {
     e.stopPropagation()
-    fileList = fileList.filter(f => f.id !== id)
+    $fileList = $fileList.filter(f => f.id !== id)
   }
 </script>
 
 <section class="upload-section">
   <DropZone on:filesAdded={e => addFiles(e.detail.files)} />
 
-  {#if fileList.length > 0}
+  {#if $fileList.length > 0}
     <p class="list-hint">Click to view VTS.</p>
 
     <ul class="file-list">
-      {#each fileList as f (f.id)}
+      {#each $fileList as f (f.id)}
         <li class="file-item" class:is-open={f.open}>
 
           <!-- ── File row button ── -->
